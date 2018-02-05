@@ -10,11 +10,32 @@ class MenuItem implements Jsonable, JsonSerializable
 {
     use HasItems;
 
+    /**
+     * @var string
+     */
     protected $label;
+
+    /**
+     * @var string
+     */
     protected $url;
+
+    /**
+     * @var boolean
+     */
     protected $active;
+
+    /**
+     * @var string
+     */
     protected $can;
 
+    /**
+     * Create a new instance
+     *
+     * @param array $attributes
+     * @return void
+     */
     public function __construct(array $attributes = [])
     {
         $this->setItems(array_get($attributes, 'items', []));
@@ -54,6 +75,10 @@ class MenuItem implements Jsonable, JsonSerializable
         return $this->url;
     }
 
+    /**
+     * @param string $can
+     * @return string
+     */
     public function can($can = '')
     {
         if ($can) {
@@ -63,6 +88,10 @@ class MenuItem implements Jsonable, JsonSerializable
         return $this->can;
     }
 
+    /**
+     * @param boolean $condition
+     * @return boolean
+     */
     public function active($condition = false)
     {
         if ($condition) {
@@ -72,6 +101,10 @@ class MenuItem implements Jsonable, JsonSerializable
         return $this->active;
     }
 
+    /**
+     * @param array $items
+     * @return array \Jevets\Menuer\MenuItem[]
+     */
     public function items(array $items = [])
     {
         if (count($items) > 0) {
@@ -86,6 +119,12 @@ class MenuItem implements Jsonable, JsonSerializable
         })->toArray();
     }
 
+    /**
+     * Convert each item from array to a `MenuItem` object
+     *
+     * @param array $items
+     * @return void
+     */
     protected function setItems($items)
     {
         $this->items = collect($items)->transform(function ($item) {
@@ -93,12 +132,9 @@ class MenuItem implements Jsonable, JsonSerializable
         });
     }
 
-    public function hasChildren()
-    {
-        return count($this->items) > 0;
-    }
-
     /**
+     * Convert the object info something JSON serializable.
+     *
      * @return string
      */
     public function jsonSerialize()
@@ -122,6 +158,8 @@ class MenuItem implements Jsonable, JsonSerializable
     }
 
     /**
+     * Convert the object to its string representation
+     *
      * @return string
      */
     public function __toString()

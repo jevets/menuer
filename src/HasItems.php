@@ -30,6 +30,8 @@ trait HasItems
     }
 
     /**
+     * Determine whether this has child items
+     *
      * @return boolean
      */
     public function hasChildren()

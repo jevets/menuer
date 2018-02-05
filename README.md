@@ -143,6 +143,12 @@ $menu->toJson();
 json_encode($menu);
 ```
 
+Or in Blade:
+
+```blade
+{{ $menu }}
+```
+
 ## TODO
 
 - Make `Menu` and `MenuItem` Arrayable

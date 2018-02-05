@@ -1,0 +1,24 @@
+{
+    "name": "jevets/menuer",
+    "description": "An HTML and JSONable menu library",
+    "require": {
+        "php": ">=7.0",
+        "illuminate/contracts": "^5.5",
+        "illuminate/support": "^5.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jevets\\Menuer\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Jevets\\Menuer\\LaravelServiceProvider"
+            ]
+        }
+    }
+}

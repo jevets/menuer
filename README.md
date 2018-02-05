@@ -116,3 +116,38 @@ class AppLayoutViewComposer
 </div>
 // ...
 ```
+
+## Casting a menu to JSON
+
+Menus support casting to JSON. This can be useful when working with JavaScript libraries like Vue.js.
+
+First, create a menu:
+
+```php
+$items = [
+  [
+    'label' => 'Home',
+    'url' => url('/'),
+    'active' => request()->is('/'),
+  ],
+  [
+    'label' => 'About',
+    'url' => route('pages.about'),
+    'active' => Route::is('about*'),
+  ]
+];
+
+$menu = new \Jevets\Menuer\Menu('my-menu', $items);
+
+$menu->toJson();
+json_encode($menu);
+```
+
+## TODO
+
+- Make `Menu` and `MenuItem` Arrayable
+- Create views for
+  - Bulma
+    - Navbar
+    - Tabs
+  - Bootstrap4 (only a few examples)

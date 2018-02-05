@@ -2,9 +2,11 @@
 
 namespace Jevets\Menuer;
 
+use JsonSerializable;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Contracts\Support\Jsonable;
 
-class MenuItem
+class MenuItem implements Jsonable, JsonSerializable
 {
     use HasItems;
 
@@ -94,5 +96,36 @@ class MenuItem
     public function hasChildren()
     {
         return count($this->items) > 0;
+    }
+
+    /**
+     * @return string
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'label' => (string) $this->label(),
+            'url' => (string) $this->url(),
+            'active' => (boolean) $this->active(),
+            'can' => (string) $this->can($this->can),
+        ];
+    }
+
+    /**
+     * Convert the menu to its JSON representation
+     *
+     * @return string
+     */
+    public function toJson($options = 0)
+    {
+        return json_encode($this->jsonSerialize(), $options);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->toJson();
     }
 }

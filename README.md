@@ -142,7 +142,7 @@ $items = [
   ]
 ];
 
-$menu = new \Jevets\Menuer\Menu('my-menu', $items);
+$menu = new \Jevets\Menuer\Menu('my-menu', $items, 'My Menu');
 
 $menu->toJson();
 json_encode($menu);
@@ -159,7 +159,7 @@ Resulting in:
 ```json
 {
   "name": "my-menu",
-  "label": "",
+  "label": "My Menu",
   "items": [
     {
       "label": "Home",
@@ -182,6 +182,7 @@ Resulting in:
 
 ## TODO
 
+- Better, more explicit handling of `can`
 - Make `Menu` and `MenuItem` Arrayable
 - Create views for
   - Bulma

@@ -134,6 +134,11 @@ $items = [
     'label' => 'About',
     'url' => route('pages.about'),
     'active' => Route::is('about*'),
+  ],
+  [
+    'label' => 'Always Active',
+    'url' => '#',
+    'active' => true,
   ]
 ];
 
@@ -149,6 +154,32 @@ Or in Blade:
 {{ $menu }}
 ```
 
+Resulting in:
+
+```json
+{
+  "name": "my-menu",
+  "label": "",
+  "items": [
+    {
+      "label": "Home",
+      "url": "http:\/\/example.com\/",
+      "active": false
+    },
+    {
+      "label": "About",
+      "url": "http:\/\/example.com\/about",
+      "active": false
+    },
+    {
+      "label": "Always Active",
+      "url": "#",
+      "active": true
+    }
+  ]
+}
+```
+
 ## TODO
 
 - Make `Menu` and `MenuItem` Arrayable
@@ -157,3 +188,4 @@ Or in Blade:
     - Navbar
     - Tabs
   - Bootstrap4 (only a few examples)
+- Document views/templating with example usage
